@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "com.hearingaid.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"SoundEventMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
