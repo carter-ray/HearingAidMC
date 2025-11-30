@@ -1,7 +1,12 @@
 package com.hearingaid.mixin;
 
 import com.hearingaid.config.HearingAidConfig;
+
+import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
+// import net.minecraft.client.world.ClientWorld;
+// import net.minecraft.client.network.ClientPlayNetworkHandler;
+
 
 import java.util.Optional;
 
@@ -27,6 +32,10 @@ public abstract class SoundEventMixin {
         } else {
             // get and calcualte volume-based range
             float base_distance = HearingAidConfig.getVolumeBaseRange(self);
+            String id = Registries.SOUND_EVENT.getId(self).toString();
+            if (id.contains("ghast")) {
+                System.out.println("[HearingAid] Calculating distance for ghast sound: " + id + " with volume " + volume + " and base distance " + base_distance);
+            }
             cir.setReturnValue(volume > 1.0f ? base_distance * volume : base_distance);
         }
     }

@@ -11,6 +11,18 @@ base {
 	archivesName = project.archives_base_name
 }
 
+loom {
+	runs {
+		client {
+			client()
+			name "Dev Client"
+			programArgs "--username", "DevClient"
+			programArgs "--uuid", "offline"
+			programArgs "--accessToken", "0"		
+		}
+	}
+}
+
 
 
 repositories {
