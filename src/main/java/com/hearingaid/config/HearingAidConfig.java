@@ -11,7 +11,6 @@ import java.io.Writer;
 import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class HearingAidConfig {
 
@@ -153,10 +152,11 @@ public class HearingAidConfig {
         return fixedSounds.get(id);
     }
 
-    public static float getVolumeBaseRange(SoundEvent sound) {
+    public static float getVolumeBaseRange(SoundEvent sound, Float volume) {
         String id = Registries.SOUND_EVENT.getId(sound).toString();
         if (!volumeSounds.containsKey(id)) {
-            volumeSounds.put(id, 16.0f);
+            // vanilla calculation for default
+            volumeSounds.put(id, volume > 1.0f ? 16.0f * volume : 16.0f);
             queueSave();
         }
         return volumeSounds.get(id);

@@ -31,12 +31,8 @@ public abstract class SoundEventMixin {
             cir.setReturnValue(HearingAidConfig.getFixedRange(self));
         } else {
             // get and calcualte volume-based range
-            float base_distance = HearingAidConfig.getVolumeBaseRange(self);
-            String id = Registries.SOUND_EVENT.getId(self).toString();
-            if (id.contains("ghast")) {
-                System.out.println("[HearingAid] Calculating distance for ghast sound: " + id + " with volume " + volume + " and base distance " + base_distance);
-            }
-            cir.setReturnValue(volume > 1.0f ? base_distance * volume : base_distance);
+            float distance = HearingAidConfig.getVolumeBaseRange(self, volume);
+            cir.setReturnValue(distance);
         }
     }
 }
