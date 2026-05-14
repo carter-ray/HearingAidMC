@@ -2,8 +2,8 @@ package com.hearingaid.mixin;
 
 import com.hearingaid.config.HearingAidConfig;
 
-import net.minecraft.registry.Registries;
-import net.minecraft.sound.SoundEvent;
+// import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvent;
 // import net.minecraft.client.world.ClientWorld;
 // import net.minecraft.client.network.ClientPlayNetworkHandler;
 
@@ -21,7 +21,7 @@ public abstract class SoundEventMixin {
 
     @Shadow private Optional<Float> fixedRange;
 
-    @Inject(method = "getDistanceToTravel(F)F", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getRange(F)F", at = @At("HEAD"), cancellable = true)
     private void overrideDistance(float volume, CallbackInfoReturnable<Float> cir) {
         SoundEvent self = (SoundEvent)(Object)this;
 

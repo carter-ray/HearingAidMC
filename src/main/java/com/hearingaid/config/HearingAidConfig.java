@@ -2,8 +2,8 @@ package com.hearingaid.config;
 
 import com.google.gson.*;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.registry.Registries;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvent;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -144,7 +144,7 @@ public class HearingAidConfig {
     }
 
     public static float getFixedRange(SoundEvent sound) {
-        String id = Registries.SOUND_EVENT.getId(sound).toString();
+        String id = sound.location().toString();
         if (!fixedSounds.containsKey(id)) {
             fixedSounds.put(id, 16.0f);
             queueSave();
@@ -153,7 +153,7 @@ public class HearingAidConfig {
     }
 
     public static float getVolumeBaseRange(SoundEvent sound, Float volume) {
-        String id = Registries.SOUND_EVENT.getId(sound).toString();
+        String id = sound.location().toString();
         if (!volumeSounds.containsKey(id)) {
             // vanilla calculation for default
             volumeSounds.put(id, volume > 1.0f ? 16.0f * volume : 16.0f);
